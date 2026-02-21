@@ -1,0 +1,120 @@
+  /* body { background-color: #F8FAFC99; } */
+
+    .nav-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        width: 95%;
+    }
+    .custom-navbar {
+        background-color: #6f42c1; 
+        border-bottom-left-radius: 4px;
+        padding: 10 10;
+        min-width: 450px;   
+    }
+    .nav-link {
+        color: white;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-left: 10px
+    }
+
+    .nav-link:hover {
+        opacity: 0.8;
+    }
+    .name-highlight {
+        color: #6f42c1;
+        font-size: 30px;
+    }
+
+    .illustration-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+    }
+
+    .bg-icons {
+        position: absolute;
+        width: 80%;
+        max-width: 450px;
+        animation: rotateIcons 40s linear infinite;
+    }
+
+    .main-character {
+        position: relative;
+        width:65%;
+        max-width: 300px;
+    }
+    @keyframes rotateIcons {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    } 
+    .main-container {
+     padding-top: 50px;
+    }
+    .header-illustration {
+        width: 180px;
+        margin-bottom:15px;
+    }
+    .contribution-title {
+        color:#6f42c1;
+        font-weight:200;
+        
+    }
+    .custom-card {
+        border-radius: 16px;
+        padding:35px;
+        max-width:450px;
+        background:#fff;
+        
+    } 
+    .brand-logo {
+        max-height: 100px;
+        width:auto;
+        margin-bottom:25px;
+    }
+    .btn-visit {
+        color: #333;
+        border: 1px solid #ddd;
+        padding: 5px 55px;
+        border-radius: 50px;
+        text-decoration: none;
+    }
+    .button-area {
+       display: flex;
+       justify-content: center; 
+       width: 100%;
+       margin-top: 10px;
+    }
+    .btn-visit:hover {
+        background-color: green;
+        color: white;
+        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
+    }
+    .custom-card:hover {
+        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
+    }
+    footer {
+        background-color: #b3418d;
+        color: white;
+        padding: 50px 0 60px 0;
+        margin-top: 15px;
+    }
+    footer a {
+        color: white; 
+        text-decoration: none; 
+        font-size: 0.90rem;
+    }
+    .social-icons a { 
+        font-size: 2.5rem;
+        margin-left: 15px;
+        transition: 0.3s; 
+    }
+    .social-icons a:hover { opacity: 0.8; }
+
+    .copyright { 
+        font-size: 0.90rem; 
+        padding-top: 1px;
+        margin-top: 20px;
+    }
+
