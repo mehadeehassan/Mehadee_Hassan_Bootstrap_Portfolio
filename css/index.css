@@ -1,21 +1,39 @@
   /* body { background-color: #F8FAFC99; } */
 
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
     .nav-wrapper {
         display: flex;
         justify-content: flex-end;
-        width: 95%;
+        width: 100%;
     }
     .custom-navbar {
         background-color: #6f42c1; 
         border-bottom-left-radius: 4px;
-        padding: 10 10;
-        min-width: 450px;   
+        min-width: min(450px, 100%);
+        width: auto;
     }
     .nav-link {
         color: white;
         margin-left: 20px;
         margin-right: 20px;
-        padding-left: 10px
+        padding-left: 10px;
+        white-space: nowrap;
     }
 
     .nav-link:hover {
@@ -23,26 +41,27 @@
     }
     .name-highlight {
         color: #6f42c1;
-        font-size: 30px;
+        font-size: clamp(1.45rem, 5vw, 1.875rem);
     }
 
     .illustration-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 400px;
+        min-height: clamp(250px, 42vw, 400px);
+        position: relative;
     }
 
     .bg-icons {
         position: absolute;
-        width: 80%;
+        width: min(80%, 450px);
         max-width: 450px;
         animation: rotateIcons 40s linear infinite;
     }
 
     .main-character {
         position: relative;
-        width:65%;
+        width:min(65%, 300px);
         max-width: 300px;
     }
     @keyframes rotateIcons {
@@ -62,35 +81,87 @@
         
     }
     .custom-card {
-        border-radius: 16px;
-        padding:35px;
-        max-width:450px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        padding: clamp(18px, 3vw, 24px);
+        max-width: 360px;
+        width: 100%;
         background:#fff;
+        height: 100%;
         
     } 
     .brand-logo {
-        max-height: 100px;
+        display: block;
+        max-height: 76px;
         width:auto;
-        margin-bottom:25px;
+        margin: 0 auto 18px;
+    }
+    .logo-area {
+        min-height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-card h5 {
+        font-size: 1.05rem;
+        min-height: 26px;
+    }
+
+    .custom-card p {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 20px !important;
     }
     .btn-visit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         color: #333;
         border: 1px solid #ddd;
-        padding: 5px 55px;
+        min-height: 38px;
+        padding: 6px 32px;
         border-radius: 50px;
         text-decoration: none;
+        max-width: 100%;
+        text-align: center;
     }
     .button-area {
        display: flex;
        justify-content: center; 
        width: 100%;
-       margin-top: 10px;
+       margin-top: auto;
+       padding-top: 8px;
     }
     .btn-visit:hover {
         background-color: green;
         color: white;
         box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
     }
+
+    .btn-download-cv {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 9px 24px;
+        border-radius: 50px;
+        background-color: #6f42c1;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.18);
+        transition: 0.3s;
+    }
+
+    .btn-download-cv:hover {
+        background-color: green;
+        color: #fff;
+        box-shadow: 0 6px 14px rgba(111, 66, 193, 0.24);
+    }
+
     .custom-card:hover {
         box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
     }
@@ -118,3 +189,143 @@
         margin-top: 20px;
     }
 
+    .intro-text,
+    .description {
+        overflow-wrap: anywhere;
+    }
+
+    .skill-table,
+    .about-skill-table {
+        width: 100%;
+    }
+
+    .skill-table td,
+    .about-skill-table td {
+        vertical-align: top;
+        overflow-wrap: anywhere;
+    }
+
+    .skill-table td:first-child,
+    .about-skill-table td:first-child {
+        font-weight: 600;
+        min-width: 160px;
+    }
+
+    .profile-photo {
+        width: 180px;
+        height: 200px;
+        object-fit: cover;
+        border-color: #f3e5f5;
+        flex: 0 0 auto;
+    }
+
+    .experience-section img {
+        max-width: 160px;
+        object-fit: contain;
+    }
+
+    @media (max-width: 991.98px) {
+        .nav-wrapper {
+            justify-content: stretch;
+            padding-top: 10px;
+        }
+
+        .custom-navbar {
+            width: 100%;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .navbar-nav {
+            align-items: flex-start !important;
+            padding: 12px 0 8px;
+        }
+
+        .nav-link {
+            margin: 0;
+            padding: 8px 0;
+            white-space: normal;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        body {
+            font-size: 0.95rem;
+        }
+
+        .container {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+
+        .illustration-wrapper {
+            min-height: 250px;
+            margin-top: 18px;
+        }
+
+        .main-container {
+            padding-top: 28px;
+        }
+
+        .header-illustration {
+            width: min(150px, 55vw);
+        }
+
+        .skill-table tr,
+        .skill-table td,
+        .about-skill-table tr,
+        .about-skill-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .skill-table td,
+        .about-skill-table td {
+            padding: 3px 0;
+        }
+
+        .skill-table td:first-child,
+        .about-skill-table td:first-child {
+            min-width: 0;
+            color: #333;
+            padding-top: 10px;
+        }
+
+        .custom-card {
+            text-align: center !important;
+        }
+
+        .btn-download-cv {
+            width: 100%;
+        }
+
+        footer {
+            padding: 32px 0 38px;
+            text-align: center;
+        }
+
+        footer .text-start,
+        footer .text-md-end {
+            text-align: center !important;
+        }
+
+        .social-icons a {
+            margin: 0 8px;
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .profile-photo {
+            width: min(180px, 70vw);
+            height: auto;
+            aspect-ratio: 9 / 10;
+        }
+
+        .experience-section .ms-4 {
+            margin-left: 1rem !important;
+        }
+
+        .experience-section ul {
+            padding-left: 1rem;
+        }
+    }
