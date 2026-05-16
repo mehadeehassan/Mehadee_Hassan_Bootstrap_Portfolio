@@ -288,7 +288,8 @@ footer a {
 
   /* Navigation items stack with adjusted padding */
   .navbar-nav {
-    align-items: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding: 12px 0 8px;
   }
 
