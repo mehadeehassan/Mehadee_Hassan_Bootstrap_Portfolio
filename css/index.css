@@ -1,331 +1,400 @@
-  /* body { background-color: #F8FAFC99; } */
+/* Universal box-sizing for all elements including pseudo-elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
+/* HTML & Body - Full width, no horizontal scroll */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
 
-    html,
-    body {
-        width: 100%;
-        overflow-x: hidden;
-    }
+/* Responsive images - Maintain aspect ratio */
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+/* Container for navigation - aligns items to right */
+.nav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
 
-    .nav-wrapper {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-    }
-    .custom-navbar {
-        background-color: #6f42c1; 
-        border-bottom-left-radius: 4px;
-        min-width: min(450px, 100%);
-        width: auto;
-    }
-    .nav-link {
-        color: white;
-        margin-left: 20px;
-        margin-right: 20px;
-        padding-left: 10px;
-        white-space: nowrap;
-    }
+/* Custom navbar styling - purple background with left border radius */
+.custom-navbar {
+  background-color: #6f42c1;
+  border-bottom-left-radius: 4px;
+  min-width: min(450px, 100%);
+  width: auto;
+}
 
-    .nav-link:hover {
-        opacity: 0.8;
-    }
-    .name-highlight {
-        color: #6f42c1;
-        font-size: clamp(1.45rem, 5vw, 1.875rem);
-    }
+/* Navigation links - white text with spacing */
+.nav-link {
+  color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 10px;
+  white-space: nowrap;
+}
 
-    .illustration-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: clamp(250px, 42vw, 400px);
-        position: relative;
-    }
+/* Navigation link hover effect - reduced opacity */
+.nav-link:hover {
+  opacity: 0.8;
+}
 
-    .bg-icons {
-        position: absolute;
-        width: min(80%, 450px);
-        max-width: 450px;
-        animation: rotateIcons 40s linear infinite;
-    }
+/* Name/Title highlighting - purple with responsive font */
+.name-highlight {
+  color: #6f42c1;
+  font-size: clamp(1.45rem, 5vw, 1.875rem);
+}
 
-    .main-character {
-        position: relative;
-        width:min(65%, 300px);
-        max-width: 300px;
-    }
-    @keyframes rotateIcons {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    } 
-    .main-container {
-     padding-top: 50px;
-    }
-    .header-illustration {
-        width: 180px;
-        margin-bottom:15px;
-    }
-    .contribution-title {
-        color:#6f42c1;
-        font-weight:200;
-        
-    }
-    .custom-card {
-        display: flex;
-        flex-direction: column;
-        border-radius: 8px;
-        padding: clamp(18px, 3vw, 24px);
-        max-width: 360px;
-        width: 100%;
-        background:#fff;
-        height: 100%;
-        
-    } 
-    .brand-logo {
-        display: block;
-        max-height: 76px;
-        width:auto;
-        margin: 0 auto 18px;
-    }
-    .logo-area {
-        min-height: 96px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+/* Container for hero illustration - centers content */
+.illustration-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: clamp(250px, 42vw, 400px);
+  position: relative;
+}
 
-    .custom-card h5 {
-        font-size: 1.05rem;
-        min-height: 26px;
-    }
+/* Background icons - rotating animation effect */
+.bg-icons {
+  position: absolute;
+  width: min(80%, 450px);
+  max-width: 450px;
+  animation: rotateIcons 40s linear infinite;
+}
 
-    .custom-card p {
-        font-size: 0.92rem;
-        line-height: 1.65;
-        margin-bottom: 20px !important;
-    }
-    .btn-visit {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-        border: 1px solid #ddd;
-        min-height: 38px;
-        padding: 6px 32px;
-        border-radius: 50px;
-        text-decoration: none;
-        max-width: 100%;
-        text-align: center;
-    }
-    .button-area {
-       display: flex;
-       justify-content: center; 
-       width: 100%;
-       margin-top: auto;
-       padding-top: 8px;
-    }
-    .btn-visit:hover {
-        background-color: green;
-        color: white;
-        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
-    }
+/* Main character/illustration - centered with max width */
+.main-character {
+  position: relative;
+  width: min(65%, 300px);
+  max-width: 300px;
+}
 
-    .btn-download-cv {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        min-height: 42px;
-        padding: 9px 24px;
-        border-radius: 50px;
-        background-color: #6f42c1;
-        color: #fff;
-        font-weight: 600;
-        text-decoration: none;
-        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.18);
-        transition: 0.3s;
-    }
+/* Animation - 360 degree rotation */
+@keyframes rotateIcons {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-    .btn-download-cv:hover {
-        background-color: green;
-        color: #fff;
-        box-shadow: 0 6px 14px rgba(111, 66, 193, 0.24);
-    }
+/* Main container - top padding for spacing */
+.main-container {
+  padding-top: 50px;
+}
 
-    .custom-card:hover {
-        box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
-    }
-    footer {
-        background-color: #b3418d;
-        color: white;
-        padding: 50px 0 60px 0;
-        margin-top: 15px;
-    }
-    footer a {
-        color: white; 
-        text-decoration: none; 
-        font-size: 0.90rem;
-    }
-    .social-icons a { 
-        font-size: 2.5rem;
-        margin-left: 15px;
-        transition: 0.3s; 
-    }
-    .social-icons a:hover { opacity: 0.8; }
+/* Section header illustration - fixed width with bottom margin */
+.header-illustration {
+  width: 180px;
+  margin-bottom: 15px;
+}
 
-    .copyright { 
-        font-size: 0.90rem; 
-        padding-top: 1px;
-        margin-top: 20px;
-    }
+/* Section title styling - light purple text */
+.contribution-title {
+  color: #6f42c1;
+  font-weight: 200;
+}
 
-    .intro-text,
-    .description {
-        overflow-wrap: anywhere;
-    }
+/* Card base styling - flex column layout with rounded corners */
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: clamp(18px, 3vw, 24px);
+  max-width: 360px;
+  width: 100%;
+  background: #fff;
+  height: 100%;
+}
 
-    .skill-table,
-    .about-skill-table {
-        width: 100%;
-    }
+/* Brand/Company logo - centered with responsive height */
+.brand-logo {
+  display: block;
+  max-height: 76px;
+  width: auto;
+  margin: 0 auto 18px;
+}
 
-    .skill-table td,
-    .about-skill-table td {
-        vertical-align: top;
-        overflow-wrap: anywhere;
-    }
+/* Container for logo - ensures consistent height across cards */
+.logo-area {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .skill-table td:first-child,
-    .about-skill-table td:first-child {
-        font-weight: 600;
-        min-width: 160px;
-    }
+/* Card heading - consistent sizing */
+.custom-card h5 {
+  font-size: 1.05rem;
+  min-height: 26px;
+}
 
-    .profile-photo {
-        width: 180px;
-        height: 200px;
-        object-fit: cover;
-        border-color: #f3e5f5;
-        flex: 0 0 auto;
-    }
+/* Card description text - improved readability */
+.custom-card p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 20px !important;
+}
+.btn-visit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  border: 1px solid #ddd;
+  min-height: 38px;
+  padding: 6px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  max-width: 100%;
+  text-align: center;
+}
+.button-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.btn-visit:hover {
+  background-color: green;
+  color: white;
+  box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
+}
 
-    .experience-section img {
-        max-width: 160px;
-        object-fit: contain;
-    }
+/* Download CV Button */
 
-    @media (max-width: 991.98px) {
-        .nav-wrapper {
-            justify-content: stretch;
-            padding-top: 10px;
-        }
+.btn-download-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 24px;
+  border-radius: 50px;
+  background-color: #6f42c1;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(111, 66, 193, 0.18);
+  transition: 0.3s;
+}
 
-        .custom-navbar {
-            width: 100%;
-            border-radius: 0 0 4px 4px;
-        }
+.btn-download-cv:hover {
+  background-color: green;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(111, 66, 193, 0.24);
+}
 
-        .navbar-nav {
-            align-items: flex-start !important;
-            padding: 12px 0 8px;
-        }
+.custom-card:hover {
+  box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2);
+}
 
-        .nav-link {
-            margin: 0;
-            padding: 8px 0;
-            white-space: normal;
-        }
-    }
+/* Footer base - pink/purple background with padding */
+footer {
+  background-color: #b3418d;
+  color: white;
+  padding: 50px 0 60px 0;
+  margin-top: 15px;
+}
 
-    @media (max-width: 767.98px) {
-        body {
-            font-size: 0.95rem;
-        }
+/* Footer links - white color with small text */
+footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
 
-        .container {
-            padding-left: 18px;
-            padding-right: 18px;
-        }
+/* Social media icons - large size with spacing */
+.social-icons a {
+  font-size: 2.5rem;
+  margin-left: 15px;
+  transition: 0.3s;
+}
 
-        .illustration-wrapper {
-            min-height: 250px;
-            margin-top: 18px;
-        }
+/* Social icons hover - opacity effect */
+.social-icons a:hover {
+  opacity: 0.8;
+}
 
-        .main-container {
-            padding-top: 28px;
-        }
+/* Copyright text - small font with margin */
+.copyright {
+  font-size: 0.9rem;
+  padding-top: 1px;
+  margin-top: 20px;
+}
 
-        .header-illustration {
-            width: min(150px, 55vw);
-        }
+/* Intro and description text - wraps long words */
+.intro-text,
+.description {
+  overflow-wrap: anywhere;
+}
 
-        .skill-table tr,
-        .skill-table td,
-        .about-skill-table tr,
-        .about-skill-table td {
-            display: block;
-            width: 100%;
-        }
+/* Skill tables - full width layout */
+.skill-table,
+.about-skill-table {
+  width: 100%;
+}
 
-        .skill-table td,
-        .about-skill-table td {
-            padding: 3px 0;
-        }
+/* Table cells - top aligned with word wrapping */
+.skill-table td,
+.about-skill-table td {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
 
-        .skill-table td:first-child,
-        .about-skill-table td:first-child {
-            min-width: 0;
-            color: #333;
-            padding-top: 10px;
-        }
+/* First column in skill tables - bold label styling */
+.skill-table td:first-child,
+.about-skill-table td:first-child {
+  font-weight: 600;
+  min-width: 160px;
+}
 
-        .custom-card {
-            text-align: center !important;
-        }
+/* Profile photo - fixed dimensions with cover fit */
+.profile-photo {
+  width: 180px;
+  height: 200px;
+  object-fit: cover;
+  border-color: #f3e5f5;
+  flex: 0 0 auto;
+}
 
-        .btn-download-cv {
-            width: 100%;
-        }
+/* Experience section images - contained within bounds */
+.experience-section img {
+  max-width: 160px;
+  object-fit: contain;
+}
 
-        footer {
-            padding: 32px 0 38px;
-            text-align: center;
-        }
+@media (max-width: 991.98px) {
+  /* Navbar spans full width on tablets */
+  .nav-wrapper {
+    justify-content: stretch;
+    padding-top: 10px;
+  }
 
-        footer .text-start,
-        footer .text-md-end {
-            text-align: center !important;
-        }
+  /* Navbar full width with bottom rounded corners */
+  .custom-navbar {
+    width: 100%;
+    border-radius: 0 0 4px 4px;
+  }
 
-        .social-icons a {
-            margin: 0 8px;
-            font-size: 2rem;
-        }
-    }
+  /* Navigation items stack with adjusted padding */
+  .navbar-nav {
+    align-items: flex-start !important;
+    padding: 12px 0 8px;
+  }
 
-    @media (max-width: 575.98px) {
-        .profile-photo {
-            width: min(180px, 70vw);
-            height: auto;
-            aspect-ratio: 9 / 10;
-        }
+  /* Navigation links - no side margins, can wrap */
+  .nav-link {
+    margin: 0;
+    padding: 8px 0;
+    white-space: normal;
+  }
+}
 
-        .experience-section .ms-4 {
-            margin-left: 1rem !important;
-        }
+@media (max-width: 767.98px) {
+  /* Slightly smaller body text for mobile */
+  body {
+    font-size: 0.95rem;
+  }
 
-        .experience-section ul {
-            padding-left: 1rem;
-        }
-    }
+  /* Reduced container padding on mobile */
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* Smaller hero illustration area */
+  .illustration-wrapper {
+    min-height: 250px;
+    margin-top: 18px;
+  }
+
+  /* Reduced top padding on mobile */
+  .main-container {
+    padding-top: 28px;
+  }
+
+  /* Smaller header illustrations on mobile */
+  .header-illustration {
+    width: min(150px, 55vw);
+  }
+
+  /* Skill tables - convert to block layout for mobile */
+  .skill-table tr,
+  .skill-table td,
+  .about-skill-table tr,
+  .about-skill-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Reduced table cell padding on mobile */
+  .skill-table td,
+  .about-skill-table td {
+    padding: 3px 0;
+  }
+
+  /* First cell label styling for mobile */
+  .skill-table td:first-child,
+  .about-skill-table td:first-child {
+    min-width: 0;
+    color: #333;
+    padding-top: 10px;
+  }
+
+  /* Center align card content on mobile */
+  .custom-card {
+    text-align: center !important;
+  }
+
+  /* Full width download button on mobile */
+  .btn-download-cv {
+    width: 100%;
+  }
+
+  /* Adjusted footer padding on mobile */
+  footer {
+    padding: 32px 0 38px;
+    text-align: center;
+  }
+
+  /* Center align footer text on mobile */
+  footer .text-start,
+  footer .text-md-end {
+    text-align: center !important;
+  }
+
+  /* Smaller social icons with reduced spacing */
+  .social-icons a {
+    margin: 0 8px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Profile photo responsive sizing for small screens */
+  .profile-photo {
+    width: min(180px, 70vw);
+    height: auto;
+    aspect-ratio: 9 / 10;
+  }
+
+  /* Reduced left margin for experience section */
+  .experience-section .ms-4 {
+    margin-left: 1rem !important;
+  }
+
+  /* Reduced padding for experience list items */
+  .experience-section ul {
+    padding-left: 1rem;
+  }
+}
