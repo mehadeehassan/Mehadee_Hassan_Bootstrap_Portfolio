@@ -12,6 +12,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  font-size: 93.75%;
+}
+
 /* Responsive images - Maintain aspect ratio */
 img {
   max-width: 100%;
@@ -142,7 +146,35 @@ img {
 .custom-card p {
   font-size: 0.92rem;
   line-height: 1.65;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
+}
+
+.expandable-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.expandable-description.is-expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.see-more-btn {
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  color: #6f42c1;
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+.see-more-btn:hover {
+  color: green;
+  text-decoration: underline;
 }
 .btn-visit {
   display: inline-flex;
@@ -328,6 +360,10 @@ footer a {
 }
 
 @media (max-width: 767.98px) {
+  html {
+    font-size: 90%;
+  }
+
   /* Slightly smaller body text for mobile */
   body {
     font-size: 0.95rem;
@@ -339,10 +375,41 @@ footer a {
     padding-right: 18px;
   }
 
+  body > .container:first-child {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  body > .container:first-child .nav-wrapper {
+    padding-top: 0;
+  }
+
+  body > .container:first-child .custom-navbar {
+    border-radius: 0;
+  }
+
   /* Smaller hero illustration area */
   .illustration-wrapper {
     min-height: 250px;
-    margin-top: 18px;
+    margin-top: 7px;
+  }
+
+  .main-character,
+  .profile-photo {
+    aspect-ratio: 1 / 1;
+    border-radius: 50% !important;
+    object-fit: cover;
+  }
+
+  .main-character {
+    width: min(68vw, 250px);
+    height: min(68vw, 250px);
+  }
+
+  .profile-photo {
+    width: min(180px, 60vw);
+    height: min(180px, 60vw);
   }
 
   /* Reduced top padding on mobile */
@@ -459,8 +526,8 @@ footer a {
   /* Profile photo responsive sizing for small screens */
   .profile-photo {
     width: min(180px, 70vw);
-    height: auto;
-    aspect-ratio: 9 / 10;
+    height: min(180px, 70vw);
+    aspect-ratio: 1 / 1;
   }
 
   /* Reduced left margin for experience section */
