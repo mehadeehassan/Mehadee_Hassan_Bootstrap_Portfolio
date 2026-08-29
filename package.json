@@ -5,7 +5,7 @@
   "description": "Portfolio site with a public API and protected admin CRUD API",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node db/seed.js && node server/index.js",
     "seed": "node db/seed.js",
     "check": "node --check server/index.js && node --check db/seed.js"
   },

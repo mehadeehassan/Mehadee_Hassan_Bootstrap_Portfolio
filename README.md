@@ -39,7 +39,7 @@ Set `NODE_ENV=production`, a strong random `SESSION_SECRET`, `APP_URL`/`API_URL`
 
 ### Render deployment
 
-The included [`render.yaml`](./render.yaml) defines a production web service with automatic Git deploys, a persistent disk for SQLite and uploads, the safe bootstrap seed command, and the unauthenticated `/healthz` health check. In Render, create a Blueprint from this repository, then set `APP_URL`, `API_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and the SMTP variables in the Environment tab. Do not commit those values. Deploy the combined service on Render when the frontend uses its relative `/api` URLs; keeping the frontend on a separate Vercel/Netlify site requires configuring that site to call the Render API URL and allowing its origin in `CORS_ORIGIN`.
+The included [`render.yaml`](./render.yaml) defines a production web service with automatic Git deploys, a persistent disk for SQLite and uploads, the safe bootstrap seed command, and the unauthenticated `/healthz` health check. In Render, create a Blueprint from this repository, then set `APP_URL`, `API_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and the SMTP variables in the Environment tab. Do not commit those values. Deploy the combined service on Render when the frontend uses its relative `/api` URLs; keeping the frontend on a separate Vercel/Netlify site requires configuring that site to call the Render API URL and allowing its origin in `CORS_ORIGIN`. The `start` script also runs the non-destructive seed before starting the server, which supports plans without a pre-deploy job; use a persistent disk or external database/storage for production durability.
 
 ## Validation
 
