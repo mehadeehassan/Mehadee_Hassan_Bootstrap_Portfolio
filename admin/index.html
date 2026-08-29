@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <section id="login-view" class="login-view">
+      <div class="login-card">
+        <div class="brand-mark"><img src="../images/logo_ai.webp" alt="Mahadde Hassan logo" /></div>
+        <p class="eyebrow">CONTENT MANAGEMENT</p>
+        <h1>Mahadde Hassan</h1>
+        <p class="login-copy">Sign in to manage your portfolio content.</p>
+        <form id="login-form">
+          <label for="email">Email</label>
+          <input id="email" type="email" required autocomplete="username" placeholder="admin@example.com" />
+          <label for="password">Password</label>
+          <input id="password" type="password" required autocomplete="current-password" placeholder="Enter your password" />
+          <button class="primary-button full-width" type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in</button>
+          <button id="forgot-password-link" class="text-button" type="button">Forgot password?</button>
+          <div id="login-error" class="alert error d-none"></div>
+        </form>
+        <form id="forgot-form" class="d-none">
+          <p class="login-copy">Enter your account email and we’ll send recovery instructions if it exists.</p>
+          <label for="forgot-email">Email</label>
+          <input id="forgot-email" type="email" required autocomplete="email" />
+          <button class="primary-button full-width" type="submit">Send recovery email</button>
+          <button id="back-to-login" class="text-button" type="button">Back to sign in</button>
+          <div id="forgot-message" class="alert d-none"></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="app-view" class="app-layout d-none">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-brand"><span class="brand-mark small"><img src="../images/logo_ai.webp" alt="Mahadde Hassan logo" /></span><span>Mahadde Hassan</span></div>
+        <p class="sidebar-label">WORKSPACE</p>
+        <nav id="resource-nav" class="sidebar-nav"></nav>
+        <div class="sidebar-footer">
+          <button id="sidebar-logout" class="sidebar-link"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Log out</span></button>
+        </div>
+      </aside>
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+      <div class="main-area">
+        <header class="topbar">
+          <button id="menu-toggle" class="icon-button menu-toggle" type="button" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+          <div><p id="breadcrumb" class="breadcrumb">Workspace / Dashboard</p><h1 id="page-title">Dashboard</h1></div>
+          <div class="topbar-account"><span class="avatar"><i class="fa-solid fa-user"></i></span><span id="admin-email"></span><button id="logout" class="icon-button" type="button" aria-label="Log out"><i class="fa-solid fa-arrow-right-from-bracket"></i></button></div>
+        </header>
+        <main class="content-area">
+          <div id="flash" class="alert d-none" role="status"></div>
+          <section id="resource-panel"></section>
+        </main>
+      </div>
+    </section>
+    <div id="dialog-root" class="dialog-root" aria-live="assertive"></div>
+    <script src="admin.js"></script>
+  </body>
+</html>

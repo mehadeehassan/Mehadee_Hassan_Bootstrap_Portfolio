@@ -1,0 +1,26 @@
+{
+  "name": "mehadee-hassan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio site with a public API and protected admin CRUD API",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "seed": "node db/seed.js",
+    "check": "node --check server/index.js && node --check db/seed.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^9.0.6"
+  }
+}
