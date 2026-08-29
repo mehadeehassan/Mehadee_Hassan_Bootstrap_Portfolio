@@ -54,7 +54,9 @@ for (const [name, permissions] of Object.entries(rolePermissions)) {
 
 app.disable("x-powered-by");
 app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: { policy: "same-site" } }));
-const allowedOrigins = String(process.env.CORS_ORIGIN || "").split(",").map((origin) => origin.trim().replace(/\/$/, "")).filter(Boolean);
+const configuredOrigins = String(process.env.CORS_ORIGIN || "").split(",").map((origin) => origin.trim().replace(/\/$/, "")).filter(Boolean);
+const productionOrigins = ["https://mehadee-hassan-portfolio.vercel.app", "https://mehadee-hassan-portfolio.netlify.app"];
+const allowedOrigins = [...new Set([...configuredOrigins, ...(process.env.NODE_ENV === "production" ? productionOrigins : [])])];
 if (allowedOrigins.length) app.use(cors({ origin: (origin, callback) => callback(null, !origin || allowedOrigins.includes(origin)), credentials: true }));
 app.use(express.json({ limit: "64kb" }));
 app.use("/api/admin", (req, res, next) => { if (["GET", "HEAD", "OPTIONS"].includes(req.method) || !req.get("origin")) return next(); const configured = process.env.APP_URL && process.env.APP_URL.replace(/\/$/, ""); const requestOrigin = `${req.protocol}://${req.get("host")}`; const origins = allowedOrigins.length ? allowedOrigins : [configured || requestOrigin]; if (!origins.includes(req.get("origin"))) return res.status(403).json({ error: "Cross-origin request rejected" }); next(); });
