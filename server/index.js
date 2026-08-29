@@ -68,7 +68,7 @@ const productionOrigins = ["https://mehadee-hassan-portfolio.vercel.app", "https
 const allowedOrigins = [...new Set([...configuredOrigins, ...appOrigins, ...(process.env.NODE_ENV === "production" ? productionOrigins : [])])];
 if (allowedOrigins.length) app.use(cors({ origin: (origin, callback) => callback(null, !origin || allowedOrigins.includes(origin)), credentials: true }));
 app.use(express.json({ limit: "64kb" }));
-app.use("/api/admin", (req, res, next) => { if (["GET", "HEAD", "OPTIONS"].includes(req.method) || !req.get("origin")) return next(); const requestOrigin = `${req.protocol}://${req.get("host")}`; const origins = allowedOrigins.length ? allowedOrigins : [requestOrigin]; if (!origins.includes(normalizeOrigin(req.get("origin")))) return res.status(403).json({ error: "Cross-origin request rejected" }); next(); });
+app.use("/api/admin", (req, res, next) => { if (["GET", "HEAD", "OPTIONS"].includes(req.method) || !req.get("origin")) return next(); const requestOrigin = `${req.protocol}://${req.get("host")}`; const origins = [...allowedOrigins, requestOrigin]; if (!origins.includes(normalizeOrigin(req.get("origin")))) return res.status(403).json({ error: "Cross-origin request rejected" }); next(); });
 
 const now = () => new Date().toISOString();
 const hashToken = (token) => crypto.createHash("sha256").update(token).digest("hex");
