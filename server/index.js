@@ -54,9 +54,10 @@ for (const [name, permissions] of Object.entries(rolePermissions)) {
 
 app.disable("x-powered-by");
 app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: { policy: "same-site" } }));
-if (process.env.CORS_ORIGIN) app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
+const allowedOrigins = String(process.env.CORS_ORIGIN || "").split(",").map((origin) => origin.trim().replace(/\/$/, "")).filter(Boolean);
+if (allowedOrigins.length) app.use(cors({ origin: (origin, callback) => callback(null, !origin || allowedOrigins.includes(origin)), credentials: true }));
 app.use(express.json({ limit: "64kb" }));
-app.use("/api/admin", (req, res, next) => { if (["GET", "HEAD", "OPTIONS"].includes(req.method) || !req.get("origin")) return next(); const configured = process.env.APP_URL && process.env.APP_URL.replace(/\/$/, ""); const requestOrigin = `${req.protocol}://${req.get("host")}`; if (req.get("origin") !== (configured || requestOrigin)) return res.status(403).json({ error: "Cross-origin request rejected" }); next(); });
+app.use("/api/admin", (req, res, next) => { if (["GET", "HEAD", "OPTIONS"].includes(req.method) || !req.get("origin")) return next(); const configured = process.env.APP_URL && process.env.APP_URL.replace(/\/$/, ""); const requestOrigin = `${req.protocol}://${req.get("host")}`; const origins = allowedOrigins.length ? allowedOrigins : [configured || requestOrigin]; if (!origins.includes(req.get("origin"))) return res.status(403).json({ error: "Cross-origin request rejected" }); next(); });
 
 const now = () => new Date().toISOString();
 const hashToken = (token) => crypto.createHash("sha256").update(token).digest("hex");
@@ -94,7 +95,7 @@ function requirePermission(permission) {
   };
 }
 function requireSuperAdmin(req, res, next) { return req.admin.role === "super_admin" ? next() : res.status(403).json({ error: "Super Admin permission required" }); }
-function cookieHeader(token, maxAge = 8 * 60 * 60) { return `${cookieName}=${encodeURIComponent(token)}; Max-Age=${maxAge}; Path=/; HttpOnly; SameSite=Lax${process.env.NODE_ENV === "production" ? "; Secure" : ""}`; }
+function cookieHeader(token, maxAge = 8 * 60 * 60) { const crossSite = process.env.NODE_ENV === "production" && allowedOrigins.length > 0; return `${cookieName}=${encodeURIComponent(token)}; Max-Age=${maxAge}; Path=/; HttpOnly; SameSite=${crossSite ? "None" : "Lax"}${process.env.NODE_ENV === "production" ? "; Secure" : ""}`; }
 function clearSession(req, res) {
   const raw = (req.headers.cookie || "").split(";").map((x) => x.trim()).find((x) => x.startsWith(`${cookieName}=`));
   if (raw) db.prepare("DELETE FROM admin_sessions WHERE token_hash=?").run(hashToken(decodeURIComponent(raw.slice(cookieName.length + 1))));
@@ -102,7 +103,7 @@ function clearSession(req, res) {
 }
 const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: true, legacyHeaders: false, message: { error: "Too many login attempts" } });
 const resetLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 5, standardHeaders: true, legacyHeaders: false, message: { error: "Too many password reset requests" } });
-const passwordValid = (password) => typeof password === "string" && password.length >= 12 && password.length <= 200 && /[a-z]/.test(password) && /[A-Z]/.test(password) && /\d/.test(password);
+const passwordValid = (password) => typeof password === "string" && password.length >= 6 && password.length <= 200 && /[a-z]/.test(password) && /[A-Z]/.test(password) && /\d/.test(password);
 async function sendPasswordResetEmail(email, token) {
   if (!process.env.SMTP_HOST || !process.env.SMTP_FROM) return false;
   try {

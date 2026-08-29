@@ -1,5 +1,6 @@
 (async () => {
-  const response = await fetch("/api/public/portfolio");
+  const apiBase = (window.PORTFOLIO_API_URL || "").replace(/\/$/, "");
+  const response = await fetch(`${apiBase}/api/public/portfolio`);
   if (!response.ok) throw new Error("Unable to load portfolio content.");
   const data = await response.json();
   const settings = data.settings || {};

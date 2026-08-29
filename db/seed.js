@@ -12,7 +12,7 @@ if (!bootstrapEmail || !bootstrapPassword) {
 if (process.env.NODE_ENV === "production" && (bootstrapEmail.trim().toLowerCase() === "admin@example.com" || bootstrapPassword === "replace-with-a-unique-strong-password")) {
   throw new Error("Production bootstrap credentials must be changed before seeding.");
 }
-if (bootstrapPassword.length < 12 || !/[a-z]/.test(bootstrapPassword) || !/[A-Z]/.test(bootstrapPassword) || !/\d/.test(bootstrapPassword)) throw new Error("Bootstrap password must be 12+ characters with upper/lowercase letters and a number.");
+if (bootstrapPassword.length < 6 || !/[a-z]/.test(bootstrapPassword) || !/[A-Z]/.test(bootstrapPassword) || !/\d/.test(bootstrapPassword)) throw new Error("Bootstrap password must be 6+ characters with upper/lowercase letters and a number.");
 const dbPath = path.resolve(process.env.DB_PATH || path.join(__dirname, "portfolio.sqlite"));
 fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 const db = new Database(dbPath);

@@ -21,7 +21,7 @@
           <label for="email">Email</label>
           <input id="email" type="email" required autocomplete="username" placeholder="admin@example.com" />
           <label for="password">Password</label>
-          <input id="password" type="password" required autocomplete="current-password" placeholder="Enter your password" />
+          <div class="password-field"><input id="password" type="password" minlength="6" required autocomplete="current-password" placeholder="Enter your password" /><button class="password-toggle" type="button" data-password-target="password" aria-label="Show password" title="Show password"><i class="fa-regular fa-eye"></i></button></div>
           <button class="primary-button full-width" type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in</button>
           <button id="forgot-password-link" class="text-button" type="button">Forgot password?</button>
           <div id="login-error" class="alert error d-none"></div>
@@ -60,6 +60,7 @@
       </div>
     </section>
     <div id="dialog-root" class="dialog-root" aria-live="assertive"></div>
+    <script src="../js/api-config.js"></script>
     <script src="admin.js"></script>
   </body>
 </html>

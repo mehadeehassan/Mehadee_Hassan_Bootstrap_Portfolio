@@ -36,7 +36,7 @@ input:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px
 .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 10px 34px; font-weight: 700; }
 .sidebar-label { margin: 0 12px 10px; color: #a0a7b5; }
 .sidebar-nav { display: grid; gap: 3px; }
-.sidebar-link { width: 100%; display: flex; align-items: center; gap: 12px; border: 0; border-radius: 7px; padding: 11px 12px; color: #6c7484; background: transparent; text-align: left; }
+.sidebar-link { width: 100%; display: flex; align-items: center; gap: 12px; border: 0; border-radius: 7px; padding: 11px 12px; color: #6c7484; background: transparent; text-align: left; white-space: nowrap; }
 .sidebar-link i { width: 18px; text-align: center; }
 .sidebar-link:hover, .sidebar-link.active { color: var(--purple); background: var(--purple-soft); }
 .sidebar-footer { margin-top: auto; border-top: 1px solid var(--line); padding-top: 14px; }
@@ -48,6 +48,10 @@ input:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px
 .avatar { width: 32px; height: 32px; display: grid; place-items: center; color: var(--purple); background: var(--purple-soft); border-radius: 50%; }
 .icon-button { border: 0; color: var(--muted); background: transparent; padding: 8px; }
 .icon-button:hover { color: var(--purple); }
+.password-field { position: relative; }
+.password-field input { padding-right: 42px; }
+.password-toggle { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); border: 0; padding: 7px; color: var(--muted); background: transparent; }
+.password-toggle:hover { color: var(--purple); }
 .menu-toggle { display: none; }
 .content-area { max-width: 1320px; margin: 0 auto; padding: 34px 38px 60px; }
 .alert { border-radius: 7px; padding: 12px 15px; margin-bottom: 18px; }
