@@ -55,6 +55,23 @@ const api = async (path, options = {}) => {
   if (!response.ok) throw new Error(data?.error || "Request failed.");
   return data;
 };
+function bindPasswordToggles() {
+  document.querySelectorAll(".password-toggle").forEach((toggle) => {
+    if (toggle.dataset.bound === "true") return;
+    toggle.dataset.bound = "true";
+    toggle.addEventListener("click", () => {
+      const field = toggle.closest(".password-field");
+      const input = field?.querySelector("input");
+      const icon = toggle.querySelector("i");
+      if (!input) return;
+      const showing = input.type === "text";
+      input.type = showing ? "password" : "text";
+      toggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+      toggle.setAttribute("title", showing ? "Show password" : "Hide password");
+      if (icon) icon.className = showing ? "fa-regular fa-eye" : "fa-regular fa-eye-slash";
+    });
+  });
+}
 function showLogin() { $("#login-view").classList.remove("d-none"); $("#app-view").classList.add("d-none"); }
 function flash(message, type = "success") { const box = $("#flash"); box.textContent = message; box.className = `alert ${type}`; }
 function setPage(name) {
