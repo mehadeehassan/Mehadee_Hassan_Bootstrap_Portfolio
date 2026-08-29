@@ -56,20 +56,31 @@ const api = async (path, options = {}) => {
   return data;
 };
 function bindPasswordToggles() {
-  document.querySelectorAll(".password-toggle").forEach((toggle) => {
-    if (toggle.dataset.bound === "true") return;
-    toggle.dataset.bound = "true";
-    toggle.addEventListener("click", () => {
-      const field = toggle.closest(".password-field");
-      const input = field?.querySelector("input");
-      const icon = toggle.querySelector("i");
-      if (!input) return;
-      const showing = input.type === "text";
-      input.type = showing ? "password" : "text";
-      toggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
-      toggle.setAttribute("title", showing ? "Show password" : "Hide password");
-      if (icon) icon.className = showing ? "fa-regular fa-eye" : "fa-regular fa-eye-slash";
-    });
+  if (document.body.dataset.passwordTogglesBound === "true") return;
+  document.body.dataset.passwordTogglesBound = "true";
+  document.addEventListener("click", (event) => {
+    const toggle = event.target.closest(".password-toggle");
+    if (!toggle) return;
+    event.preventDefault();
+    const field = toggle.closest(".password-field");
+    const targetId = toggle.dataset.passwordTarget;
+    const input = (targetId && document.getElementById(targetId)) || field?.querySelector("input");
+    const icon = toggle.querySelector("i");
+    if (!input) return;
+    const showing = input.type === "text";
+    input.type = showing ? "password" : "text";
+    toggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+    toggle.setAttribute("title", showing ? "Show password" : "Hide password");
+    if (icon) icon.className = showing ? "fa-regular fa-eye" : "fa-regular fa-eye-slash";
+  });
+}
+function resetPasswordToggleState(root = document) {
+  root.querySelectorAll(".password-toggle").forEach((toggle) => {
+    const targetId = toggle.dataset.passwordTarget;
+    const input = (targetId && document.getElementById(targetId)) || toggle.closest(".password-field")?.querySelector("input");
+    const visible = input?.type === "text";
+    toggle.setAttribute("aria-label", visible ? "Hide password" : "Show password");
+    toggle.setAttribute("title", visible ? "Hide password" : "Show password");
   });
 }
 function showLogin() { $("#login-view").classList.remove("d-none"); $("#app-view").classList.add("d-none"); }
