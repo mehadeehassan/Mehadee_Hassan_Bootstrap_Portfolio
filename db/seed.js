@@ -13,7 +13,9 @@ if (process.env.NODE_ENV === "production" && (bootstrapEmail.trim().toLowerCase(
   throw new Error("Production bootstrap credentials must be changed before seeding.");
 }
 if (bootstrapPassword.length < 12 || !/[a-z]/.test(bootstrapPassword) || !/[A-Z]/.test(bootstrapPassword) || !/\d/.test(bootstrapPassword)) throw new Error("Bootstrap password must be 12+ characters with upper/lowercase letters and a number.");
-const db = new Database(path.resolve(process.env.DB_PATH || path.join(__dirname, "portfolio.sqlite")));
+const dbPath = path.resolve(process.env.DB_PATH || path.join(__dirname, "portfolio.sqlite"));
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+const db = new Database(dbPath);
 db.pragma("foreign_keys = ON");
 db.exec(fs.readFileSync(path.join(__dirname, "schema.sql"), "utf8"));
 if (!db.prepare("PRAGMA table_info(experience_responsibilities)").all().some((column) => column.name === "is_active")) {

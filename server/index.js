@@ -15,6 +15,7 @@ dotenv.config();
 const app = express();
 const port = Number(process.env.PORT) || 3222;
 const dbPath = path.resolve(process.env.DB_PATH || path.join(__dirname, "..", "db", "portfolio.sqlite"));
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 const db = new Database(dbPath);
 db.pragma("foreign_keys = ON");
 db.exec(fs.readFileSync(path.join(__dirname, "..", "db", "schema.sql"), "utf8"));
