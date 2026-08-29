@@ -121,7 +121,7 @@ img {
 .name-highlight {
   color: #6f42c1;
   display: inline-block;
-  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-size: clamp(1.5rem, 5.5vw, 3.2rem);
   line-height: 1.15;
 }
 
