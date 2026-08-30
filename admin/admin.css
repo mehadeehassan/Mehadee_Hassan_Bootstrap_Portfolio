@@ -136,15 +136,14 @@ body { letter-spacing: -.01em; }
 .management-table tbody tr:hover { background: #fbfaff; }
 .role-badge { display: inline-flex; padding: 4px 9px; border-radius: 6px; color: #59627a; background: #f0f2f6; font-size: 11px; text-transform: capitalize; }
 .item-actions { align-self: center; }
-.action-menu { position: relative; }
-.more-button { width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
-.more-button:hover, .action-menu.open .more-button { color: var(--purple); border-color: #cfc7f4; background: var(--purple-soft); }
-.action-menu-list { position: absolute; z-index: 15; top: calc(100% + 6px); right: 0; display: none; min-width: 160px; padding: 5px; border: 1px solid var(--line); border-radius: 9px; background: #fff; box-shadow: 0 12px 28px rgba(23,32,51,.14); }
-.action-menu-list.align-left { right: auto; left: 0; }
-.action-menu.open .action-menu-list { display: grid; }
-.action-menu-list button { display: flex; align-items: center; gap: 9px; width: 100%; border: 0; border-radius: 6px; padding: 9px 10px; color: var(--ink); background: transparent; text-align: left; font-size: 12px; }
-.action-menu-list button:hover { background: var(--purple-soft); color: var(--purple); }
-.action-menu-list button.danger:hover { color: var(--danger); background: #fff0f2; }
+.action-menu { display: inline-flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.action-menu .action-icon { width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 7px; padding: 0; color: #1f73ff; background: transparent; font-size: 0; line-height: 1; }
+.action-menu .action-icon i { font-size: 20px; line-height: 1; }
+.action-menu .action-icon:hover { color: #0b5de7; background: #eef5ff; }
+.action-menu .action-icon.danger { color: #ff5a5f; }
+.action-menu .action-icon.danger:hover { color: #e6454b; background: #fff0f2; }
+.action-menu .reset-user { color: #7b8496; }
+.action-menu .reset-user:hover { color: var(--purple); background: var(--purple-soft); }
 .dialog-root { display: none; }
 .dialog-root.open { display: block; }
 .dialog-backdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(23,32,51,.42); backdrop-filter: blur(3px); }
@@ -154,4 +153,4 @@ body { letter-spacing: -.01em; }
 .dialog p { margin: 0; color: var(--muted); line-height: 1.55; }
 .dialog-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
 .dialog-actions .primary-button { padding: 9px 14px; }
-@media (max-width: 767px) { .management-table { min-width: 640px; } .resource-card-header { padding: 18px; } .table-wrap { margin: 0 -1px; } .dialog-backdrop { padding: 12px; } .dialog { grid-template-columns: 1fr; width: min(100%, 420px); max-height: calc(100vh - 24px); overflow-y: auto; padding: 20px; } .dialog-icon { margin-bottom: 2px; } .dialog-actions { grid-column: 1; flex-wrap: wrap; } .dialog-actions button { flex: 1 1 110px; } .action-menu-list { position: fixed; top: auto; right: 12px; max-width: calc(100vw - 24px); } .action-menu-list.align-left { left: 12px; right: auto; } }
+@media (max-width: 767px) { .management-table { min-width: 640px; } .resource-card-header { padding: 18px; } .table-wrap { margin: 0 -1px; } .dialog-backdrop { padding: 12px; } .dialog { grid-template-columns: 1fr; width: min(100%, 420px); max-height: calc(100vh - 24px); overflow-y: auto; padding: 20px; } .dialog-icon { margin-bottom: 2px; } .dialog-actions { grid-column: 1; flex-wrap: wrap; } .dialog-actions button { flex: 1 1 110px; } }

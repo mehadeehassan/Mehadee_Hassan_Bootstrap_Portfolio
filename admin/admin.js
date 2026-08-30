@@ -40,7 +40,15 @@ function confirmAction(message, title = "Please confirm") {
 }
 function actionMenu(actions) {
   if (!actions.length) return "—";
-  return `<div class="action-menu"><button class="icon-button more-button" type="button" aria-label="More actions" title="More actions" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button><div class="action-menu-list" role="menu">${actions.join("")}</div></div>`;
+  const buttons = actions.map((action) => {
+    const label = escapeHtml(action.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+    const button = action.replace(/\srole="menuitem"/g, "");
+    if (button.includes('class="')) {
+      return button.replace(/<button\s+class="/, `<button aria-label="${label}" title="${label}" class="action-icon `);
+    }
+    return button.replace("<button ", `<button aria-label="${label}" title="${label}" class="action-icon" `);
+  });
+  return `<div class="action-menu" aria-label="Actions">${buttons.join("")}</div>`;
 }
 const apiBase = (window.PORTFOLIO_API_URL || "").replace(/\/$/, "");
 const api = async (path, options = {}) => {
@@ -277,27 +285,6 @@ bindPasswordToggles();
 async function logout() { await api("logout", { method: "POST" }); showLogin(); }
 $("#logout").addEventListener("click", logout); $("#sidebar-logout").addEventListener("click", logout);
 $("#menu-toggle").addEventListener("click", () => { $("#sidebar").classList.toggle("open"); $("#sidebar-backdrop").classList.toggle("open"); }); $("#sidebar-backdrop").addEventListener("click", () => { $("#sidebar").classList.remove("open"); $("#sidebar-backdrop").classList.remove("open"); });
-document.addEventListener("click", (event) => {
-  const toggle = event.target.closest(".more-button");
-  if (toggle) {
-    const menu = toggle.closest(".action-menu");
-    document.querySelectorAll(".action-menu.open").forEach((entry) => { if (entry !== menu) entry.classList.remove("open"); });
-    menu.classList.toggle("open"); toggle.setAttribute("aria-expanded", menu.classList.contains("open"));
-    if (menu.classList.contains("open")) {
-      const menuBox = menu.querySelector(".action-menu-list");
-      const buttonBox = toggle.getBoundingClientRect();
-      menuBox.classList.toggle("align-left", buttonBox.right - 160 > window.innerWidth - 12);
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        menuBox.style.top = `${buttonBox.bottom + 6}px`;
-        requestAnimationFrame(() => {
-          if (menuBox.getBoundingClientRect().bottom > window.innerHeight - 12) {
-            menuBox.style.top = `${Math.max(12, buttonBox.top - menuBox.offsetHeight - 6)}px`;
-          }
-        });
-      }
-    }
-  } else if (!event.target.closest(".action-menu")) document.querySelectorAll(".action-menu.open").forEach((entry) => entry.classList.remove("open"));
-});
 $("#forgot-password-link").addEventListener("click", () => { $("#login-form").classList.add("d-none"); $("#forgot-form").classList.remove("d-none"); $("#forgot-email").value = $("#email").value; });
 $("#back-to-login").addEventListener("click", () => { $("#forgot-form").classList.add("d-none"); $("#login-form").classList.remove("d-none"); });
 $("#forgot-form").addEventListener("submit", async (event) => { event.preventDefault(); try { const data = await api("forgot-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: $("#forgot-email").value }) }); $("#forgot-message").textContent = data.message; $("#forgot-message").className = "alert success"; } catch (error) { $("#forgot-message").textContent = "Unable to process request."; $("#forgot-message").className = "alert error"; } });
